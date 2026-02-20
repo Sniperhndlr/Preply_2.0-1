@@ -1,0 +1,136 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int      @id @default(autoincrement())
+  email         String   @unique
+  password_hash String
+  role          String   // "teacher", "student", "admin"
+  name          String
+  avatar_url    String?
+  phone         String?
+  settings_json String?
+  balance_minutes Int    @default(0)
+  credits_usd   Float    @default(0)
+  preferred_currency String @default("USD")
+  createdAt     DateTime @default(now())
+
+  teacherProfile      TeacherProfile?
+  bookings            Booking[]
+  paymentMethods      PaymentMethod[]
+  subscription        Subscription?
+  creditTransactions  CreditTransaction[]
+}
+
+model TeacherProfile {
+  id             Int     @id @default(autoincrement())
+  userId         Int     @unique
+  user           User    @relation(fields: [userId], references: [id])
+  headline       String?
+  bio            String?
+  video_url      String?
+  intro_video_url String?
+  hourly_rate    Float?
+  hourly_rate_local Float?
+  hourly_rate_currency String @default("USD")
+  zoom_link      String?
+  state_alignment String? // e.g., "NY, CA"
+  years_experience Int?
+  education      String?
+  certifications String?
+  timezone       String?
+  is_profile_complete Boolean @default(false)
+  availability   String? // Stored as JSON string
+
+  subjects       TeacherSubject[]
+  bookings       Booking[]
+}
+
+model Subject {
+  id          Int    @id @default(autoincrement())
+  name        String @unique
+  category    String // "Math", "Reading", etc.
+  grade_level String // "9", "10", "11", "12"
+
+  teachers    TeacherSubject[]
+  bookings    Booking[]
+}
+
+model TeacherSubject {
+  teacherId Int
+  subjectId Int
+  teacher   TeacherProfile @relation(fields: [teacherId], references: [id])
+  subject   Subject        @relation(fields: [subjectId], references: [id])
+
+  @@id([teacherId, subjectId])
+}
+
+model Booking {
+  id           Int      @id @default(autoincrement())
+  studentId    Int
+  teacherId    Int
+  subjectId    Int
+  student      User           @relation(fields: [studentId], references: [id])
+  teacher      TeacherProfile @relation(fields: [teacherId], references: [id])
+  subject      Subject        @relation(fields: [subjectId], references: [id])
+  startTime    DateTime
+  endTime      DateTime
+  status       String   @default("pending") // "pending", "confirmed", "completed", "cancelled"
+  meeting_link String?
+  charge_usd   Float?
+  charge_currency String?
+  charge_amount Float?
+
+  review       Review?
+}
+
+model Review {
+  id        Int     @id @default(autoincrement())
+  bookingId Int     @unique
+  booking   Booking @relation(fields: [bookingId], references: [id])
+  rating    Int
+  comment   String?
+}
+
+model PaymentMethod {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  method_type String @default("card") // "card" | "paypal"
+  brand     String
+  last4     String
+  exp_month Int
+  exp_year  Int
+  paypal_email String?
+  is_default Boolean @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Subscription {
+  id                 Int      @id @default(autoincrement())
+  userId             Int      @unique
+  user               User     @relation(fields: [userId], references: [id])
+  plan_name          String
+  status             String   @default("active")
+  hours_per_month    Int
+  price_usd          Float
+  current_period_end DateTime
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model CreditTransaction {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
+  amount_usd  Float
+  source      String
+  description String?
+  createdAt   DateTime @default(now())
+}

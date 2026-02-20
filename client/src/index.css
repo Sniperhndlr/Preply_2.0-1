@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --brand-primary: #0e7490;
+    --brand-secondary: #ea580c;
+    --brand-accent: #14b8a6;
+    --bg-main: #f4f9ff;
+    --card-bg: #ffffff;
+    --glass-border: #dbe7f3;
+    --text-main: #0f172a;
+    --text-muted: #4b5563;
+}
+
+@layer base {
+    body {
+        @apply font-sans text-slate-900 antialiased;
+        background:
+            radial-gradient(circle at 20% -12%, rgba(56, 189, 248, 0.18), transparent 33%),
+            radial-gradient(circle at 88% -8%, rgba(20, 184, 166, 0.12), transparent 32%),
+            linear-gradient(180deg, #fbfdff 0%, #f4f8fd 52%, #eef3f9 100%);
+        background-attachment: fixed;
+    }
+
+    .dark body {
+        @apply text-slate-100;
+        background:
+            radial-gradient(circle at 10% -10%, rgba(56, 189, 248, 0.2), transparent 34%),
+            radial-gradient(circle at 90% 0%, rgba(45, 212, 191, 0.16), transparent 34%),
+            linear-gradient(180deg, #020617 0%, #0b1120 50%, #111827 100%);
+        background-attachment: fixed;
+    }
+}
+
+@layer components {
+    .glass-card {
+        @apply border;
+        background: var(--card-bg);
+        border-color: var(--glass-border);
+        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.045);
+    }
+
+    .dark .glass-card {
+        background: rgba(15, 23, 42, 0.72);
+        border-color: rgba(71, 85, 105, 0.55);
+        box-shadow: 0 12px 42px rgba(2, 6, 23, 0.4);
+    }
+
+    .glass-nav {
+        @apply border-b;
+        background: #ffffff;
+        border-color: #e4edf6;
+    }
+
+    .dark .glass-nav {
+        background: rgba(2, 6, 23, 0.75);
+        border-color: rgba(51, 65, 85, 0.85);
+    }
+
+    .btn-primary {
+        @apply text-white font-semibold transition-all duration-300 shadow-md;
+        background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+        letter-spacing: 0.01em;
+    }
+
+    .btn-primary:hover {
+        box-shadow: 0 10px 22px rgba(14, 116, 144, 0.28);
+        transform: translateY(-1px);
+    }
+
+    .btn-primary:active {
+        transform: translateY(0);
+    }
+
+    .btn-secondary {
+        @apply border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition-colors font-semibold;
+    }
+
+    .dashboard-card {
+        @apply bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300;
+    }
+
+    .text-gradient {
+        background: linear-gradient(120deg, #0e7490, #ea580c);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .card-hover {
+        transition: transform 280ms ease, box-shadow 280ms ease;
+    }
+
+    .card-hover:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+    }
+}
+
+/* Page transitions */
+.page-enter {
+    animation: pageIn 380ms ease-out;
+}
+
+/* Prevent fixed-navbar overlap across pages that were cutting at the top. */
+.pt-28 {
+    padding-top: 8rem !important;
+}
+
+.pt-32 {
+    padding-top: 8.5rem !important;
+}
+
+.pt-36 {
+    padding-top: 9rem !important;
+}
+
+@keyframes pageIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+.animate-fade-up {
+    animation: fadeUp 0.55s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .page-enter,
+    .animate-fade-in,
+    .animate-fade-up,
+    .card-hover,
+    .btn-primary {
+        animation: none !important;
+        transition: none !important;
+    }
+}
