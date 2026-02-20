@@ -13,13 +13,12 @@ export const useTheme = () => {
 export const ThemeProvider = ({ children }) => {
     const [darkMode, setDarkMode] = useState(() => {
         try {
-            // Check localStorage for saved preference
+            // Default to light mode for first-time visitors.
             const saved = localStorage.getItem('darkMode');
             if (saved !== null) {
                 return JSON.parse(saved);
             }
-            // Check system preference
-            return window.matchMedia('(prefers-color-scheme: dark)').matches;
+            return false;
         } catch (error) {
             console.error('Error reading theme from localStorage:', error);
             return false;
@@ -42,19 +41,6 @@ export const ThemeProvider = ({ children }) => {
             console.error('Error applying theme:', error);
         }
     }, [darkMode]);
-
-    // Listen for system preference changes if no user override (optional, but good UX)
-    useEffect(() => {
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        const handleChange = (e) => {
-            if (localStorage.getItem('darkMode') === null) {
-                setDarkMode(e.matches);
-            }
-        };
-
-        mediaQuery.addEventListener('change', handleChange);
-        return () => mediaQuery.removeEventListener('change', handleChange);
-    }, []);
 
     const toggleDarkMode = () => {
         setDarkMode(prev => !prev);
