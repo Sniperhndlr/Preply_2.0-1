@@ -12,18 +12,35 @@ const accountRoutes = require('./routes/account');
 const tutorRoutes = require('./routes/tutor');
 const classroomRoutes = require('./routes/classroom');
 
+const normalizeOrigin = (value) => String(value || '').trim().replace(/\/+$/, '');
+
 const allowedOrigins = (process.env.CORS_ORIGIN || '')
   .split(',')
-  .map((origin) => origin.trim())
+  .map(normalizeOrigin)
   .filter(Boolean);
+
+const isAllowedOrigin = (requestOrigin) => {
+  const normalizedRequestOrigin = normalizeOrigin(requestOrigin);
+  if (!normalizedRequestOrigin) return true;
+  if (allowedOrigins.length === 0) return true;
+
+  return allowedOrigins.some((pattern) => {
+    if (!pattern.includes('*')) return pattern === normalizedRequestOrigin;
+    // Support wildcard patterns like https://*.vercel.app
+    const escaped = pattern.replace(/[.+?^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*');
+    return new RegExp(`^${escaped}$`).test(normalizedRequestOrigin);
+  });
+};
 
 app.use(cors({
   origin(origin, callback) {
     // Allow non-browser clients and same-origin requests.
     if (!origin) return callback(null, true);
-    if (allowedOrigins.length === 0 || allowedOrigins.includes(origin)) return callback(null, true);
-    return callback(new Error('Not allowed by CORS'));
+    if (isAllowedOrigin(origin)) return callback(null, true);
+    // Return false instead of error so preflight does not become a 500.
+    return callback(null, false);
   },
+  optionsSuccessStatus: 204,
 }));
 app.use(express.json());
 
