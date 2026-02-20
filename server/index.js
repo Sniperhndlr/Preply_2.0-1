@@ -11,6 +11,7 @@ const bookingRoutes = require('./routes/bookings');
 const accountRoutes = require('./routes/account');
 const tutorRoutes = require('./routes/tutor');
 const classroomRoutes = require('./routes/classroom');
+const prisma = require('./prisma/client');
 
 const normalizeOrigin = (value) => String(value || '').trim().replace(/\/+$/, '');
 
@@ -54,6 +55,21 @@ app.use('/api/classroom', classroomRoutes);
 // Health Check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });
+});
+
+// DB health check (useful for hosted env debugging)
+app.get('/api/health/db', async (req, res) => {
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+    res.json({ status: 'ok', db: 'connected' });
+  } catch (error) {
+    res.status(500).json({
+      status: 'error',
+      db: 'disconnected',
+      message: error?.message || 'Database connection failed',
+      code: error?.code || null,
+    });
+  }
 });
 
 if (require.main === module) {
