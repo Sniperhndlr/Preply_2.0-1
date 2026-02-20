@@ -12,7 +12,19 @@ const accountRoutes = require('./routes/account');
 const tutorRoutes = require('./routes/tutor');
 const classroomRoutes = require('./routes/classroom');
 
-app.use(cors());
+const allowedOrigins = (process.env.CORS_ORIGIN || '')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+app.use(cors({
+  origin(origin, callback) {
+    // Allow non-browser clients and same-origin requests.
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.length === 0 || allowedOrigins.includes(origin)) return callback(null, true);
+    return callback(new Error('Not allowed by CORS'));
+  },
+}));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
@@ -27,6 +39,10 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });
 });
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+}
+
+module.exports = app;
