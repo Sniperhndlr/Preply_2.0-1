@@ -29,7 +29,7 @@ const Footer = () => (
           <Link to="/help">Terms</Link>
           <Link to="/help">Privacy</Link>
         </div>
-        <p>PreplyUS is an independent service and is not affiliated with any state or government agency.</p>
+        <p>SyllabusSync is an independent service and is not affiliated with any state or government agency.</p>
       </div>
     </div>
   </footer>

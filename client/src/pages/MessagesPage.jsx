@@ -86,7 +86,7 @@ const MessagesPage = () => {
           <section className="glass-card rounded-2xl p-4 md:p-5 min-h-[560px] flex flex-col">
             <div className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800 inline-flex items-center gap-2 mb-4 dark:bg-amber-950/30 dark:text-amber-200 dark:border-amber-800">
               <ShieldAlert className="h-4 w-4" />
-              For your safety, keep all communication and payments on PreplyUS. Don&apos;t share personal contact details.
+              For your safety, keep all communication and payments on SyllabusSync. Don&apos;t share personal contact details.
             </div>
 
             <header className="pb-3 border-b border-slate-200 dark:border-slate-700">

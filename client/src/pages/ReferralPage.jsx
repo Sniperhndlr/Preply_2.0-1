@@ -9,7 +9,7 @@ const ReferralPage = () => {
     const [copied, setCopied] = useState(false);
     const [claimState, setClaimState] = useState('');
     const referralCode = 'FRIEND50';
-    const referralLink = `https://preplyus.com/signup?ref=${referralCode}`;
+    const referralLink = `https://syllabussync.com/signup?ref=${referralCode}`;
 
     const handleCopy = () => {
         navigator.clipboard.writeText(referralLink);
@@ -37,7 +37,7 @@ const ReferralPage = () => {
                     </div>
                     <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">Give $50, Get $50</h1>
                     <p className="text-lg text-slate-600 dark:text-slate-300 max-w-xl mx-auto">
-                        Share PreplyUS with friends and you both get $50 in tutoring credits.
+                        Share SyllabusSync with friends and you both get $50 in tutoring credits.
                     </p>
                 </div>
 

@@ -54,7 +54,7 @@ const ContactPage = () => {
 
                 <div className="grid md:grid-cols-3 gap-6 mb-12">
                     {[
-                        { icon: <Mail className="w-6 h-6" />, title: 'Email', value: 'support@preplyhs.com' },
+                        { icon: <Mail className="w-6 h-6" />, title: 'Email', value: 'support@syllabussync.com' },
                         { icon: <MessageCircle className="w-6 h-6" />, title: 'Live Chat', value: 'Available 24/7' },
                         { icon: <Phone className="w-6 h-6" />, title: 'Phone', value: '1-800-PREPLY' }
                     ].map((item, idx) => (

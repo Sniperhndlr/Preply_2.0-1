@@ -9,7 +9,7 @@ const steps = [
 
 const HowItWorksSection = () => (
   <section id="how-it-works" className="py-14" aria-label="How it works">
-    <h2 className="text-2xl font-display font-bold text-slate-900 mb-2">How PreplyUS works</h2>
+    <h2 className="text-2xl font-display font-bold text-slate-900 mb-2">How SyllabusSync works</h2>
     <p className="text-sm text-slate-600 mb-6">Three simple steps to start improving today.</p>
     <div className="grid md:grid-cols-3 gap-4">
       {steps.map((step, index) => {

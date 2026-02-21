@@ -37,7 +37,7 @@ const Header = () => {
             <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-cyan-600 text-white">
               <GraduationCap className="h-4 w-4" />
             </span>
-            <span className="text-[2rem] leading-none font-display font-bold text-slate-900 dark:text-white">PreplyUS</span>
+            <span className="text-[2rem] leading-none font-display font-bold text-slate-900 dark:text-white">SyllabusSync</span>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1 text-sm">

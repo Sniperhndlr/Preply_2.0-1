@@ -35,7 +35,7 @@ const LoginPage = () => {
                             <Sparkles className="w-3.5 h-3.5 mr-1.5" />
                             Welcome Back
                         </span>
-                        <h1 className="mt-5 text-4xl font-display font-bold text-slate-900 dark:text-white">Log in to PreplyUS</h1>
+                        <h1 className="mt-5 text-4xl font-display font-bold text-slate-900 dark:text-white">Log in to SyllabusSync</h1>
                         <p className="mt-3 text-slate-600 dark:text-slate-300">
                             Continue your lessons, manage your balance, and connect with tutors.
                         </p>

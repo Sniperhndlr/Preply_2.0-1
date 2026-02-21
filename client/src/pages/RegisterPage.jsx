@@ -69,7 +69,7 @@ const RegisterPage = () => {
                     <section className="glass-card rounded-3xl p-8 md:p-10">
                         <span className="inline-flex items-center rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">
                             <Sparkles className="w-3.5 h-3.5 mr-1.5" />
-                            Join PreplyUS
+                            Join SyllabusSync
                         </span>
                         <h1 className="mt-5 text-4xl font-display font-bold text-slate-900 dark:text-white">
                             Choose your account type

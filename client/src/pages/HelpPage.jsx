@@ -27,7 +27,7 @@ const HelpPage = () => {
                 <div className="text-center mb-12">
                     <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">Help Center</h1>
                     <p className="text-lg text-slate-600 dark:text-slate-300">
-                        Find answers to common questions and learn how to get the most out of PreplyHS.
+                        Find answers to common questions and learn how to get the most out of SyllabusSync.
                     </p>
                 </div>
 

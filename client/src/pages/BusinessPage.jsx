@@ -45,7 +45,7 @@ const BusinessPage = () => {
                         Enterprise Solutions
                     </div>
                     <h1 className="text-5xl font-bold text-slate-900 dark:text-white mb-6">
-                        PreplyHS for Business
+                        SyllabusSync for Business
                     </h1>
                     <p className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-10">
                         Empower your organization with world-class tutoring and training solutions tailored for enterprise needs.
@@ -85,7 +85,7 @@ const BusinessPage = () => {
                 <div className="mt-16 bg-gradient-to-r from-indigo-600 to-violet-600 rounded-3xl p-12 text-center text-white">
                     <h2 className="text-3xl font-bold mb-4">Ready to transform your team's learning?</h2>
                     <p className="text-indigo-100 mb-8 max-w-xl mx-auto">
-                        Join thousands of companies already using PreplyHS to develop their workforce.
+                        Join thousands of companies already using SyllabusSync to develop their workforce.
                     </p>
                     <button
                         onClick={handleGetStarted}
@@ -106,4 +106,3 @@ const BusinessPage = () => {
 };
 
 export default BusinessPage;
-

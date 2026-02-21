@@ -60,7 +60,7 @@ const Navbar = () => {
                 <div className="max-w-7xl mx-auto flex justify-between h-16 items-center">
                     <div className="flex items-center space-x-8">
                         <Link to="/" className="flex-shrink-0 flex items-center group">
-                            <span className="text-2xl font-display font-bold text-slate-900 tracking-tight group-hover:text-cyan-700 transition-colors">PreplyUS</span>
+                            <span className="text-2xl font-display font-bold text-slate-900 tracking-tight group-hover:text-cyan-700 transition-colors">SyllabusSync</span>
                         </Link>
 
                         <Link
@@ -177,7 +177,7 @@ const Navbar = () => {
                                                     Contact Support
                                                 </Link>
                                                 <a
-                                                    href="https://www.preply.com/en/p/faqs"
+                                                    href="/help"
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="flex items-center px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50"
