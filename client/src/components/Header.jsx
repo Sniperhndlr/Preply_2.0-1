@@ -13,7 +13,6 @@ const Header = () => {
     { name: 'Find tutors', to: '/teachers' },
     { name: 'How it works', to: '/#how-it-works' },
     { name: 'Subjects', to: '/#subjects' },
-    { name: 'Pricing', to: '/pricing' },
     { name: 'For schools', to: '/for-schools', hideUntilXl: true },
     { name: 'Get matched', to: '/teachers?match=true', hideUntilXl: true },
     { name: 'Become a tutor', to: '/register', hideUntilXl: true },
