@@ -56,7 +56,7 @@ const ContactPage = () => {
                     {[
                         { icon: <Mail className="w-6 h-6" />, title: 'Email', value: 'support@syllabussync.com' },
                         { icon: <MessageCircle className="w-6 h-6" />, title: 'Live Chat', value: 'Available 24/7' },
-                        { icon: <Phone className="w-6 h-6" />, title: 'Phone', value: '1-800-PREPLY' }
+                        { icon: <Phone className="w-6 h-6" />, title: 'Phone', value: '1-800-SYNC' }
                     ].map((item, idx) => (
                         <div key={idx} className="bg-white rounded-xl p-6 text-center shadow-sm border border-slate-100 dark:bg-slate-800 dark:border-slate-700">
                             <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center text-indigo-600 mx-auto mb-4 dark:bg-indigo-900/50 dark:text-indigo-400">
